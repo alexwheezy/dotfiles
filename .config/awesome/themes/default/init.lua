@@ -34,7 +34,6 @@ theme.border_width = dpi(0)
 theme.systray_icon_spacing = dpi(10)
 
 theme.bg_normal = "#13131e"
--- theme.bg_normal = "#15191d"
 theme.bg_focus = "#262C37"
 theme.bg_urgent = "#86878F"
 theme.bg_minimize = "#313B4B"
