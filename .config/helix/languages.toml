@@ -1,0 +1,20 @@
+[[language]]
+name = "rust"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[[language]]
+name = "cpp"
+auto-format = true
+
+[[language]]
+name = "markdown"
+soft-wrap.enable = true
+text-width = 120
+soft-wrap.wrap-at-text-width = true
