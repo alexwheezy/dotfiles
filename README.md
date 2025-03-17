@@ -7,3 +7,6 @@ AwesomeWM
 
 Neovim
 ![Neovim](screens/neovim.png)
+
+Helix
+![Helix](screens/helix.png)
