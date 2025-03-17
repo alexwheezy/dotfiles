@@ -10,6 +10,7 @@ rulers = [120]
 popup-border = "all"
 default-yank-register = "+"
 end-of-line-diagnostics = "disable"
+jump-label-alphabet = "jfkdls;aurieowpqnvmcxz"
 
 [editor.statusline]
 left = ["mode", "version-control", "file-name", "file-modification-indicator", "read-only-indicator"]
@@ -51,16 +52,22 @@ S-g = "goto_last_line"
 V = "select_mode"
 "+" = "increment"
 "-" = "decrement"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
 
 [keys.normal.g]
 "*" = ["move_prev_word_start", "move_next_word_end", "search_selection"]
 "^" = "goto_first_nonwhitespace"
 
-[keys.normal."space"]
-i = ":toggle lsp.display-inlay-hints" 
+[keys.normal.space]
+"-" = "hsplit"
+"|" = "vsplit"
 
 [keys.normal.space.t]
 s = ":toggle soft-wrap.enable"
+h = ":toggle lsp.display-inlay-hints" 
 
 [keys.insert]
 up = "no_op"
@@ -74,8 +81,8 @@ end = "no_op"
 "C-[" = ["collapse_selection", "normal_mode"]
 
 [keys.select]
-"{" = ["goto_prev_paragraph"]
-"}" = ["goto_next_paragraph"]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
 "C-[" = ["collapse_selection", "normal_mode"]
 0 = "goto_line_start"
 "$" = "goto_line_end"
