@@ -43,7 +43,6 @@ label = "scale.green.1"
 "diff.delta" = "attention.fg"
 
 # "ui.background" = { bg = "canvas.default" }
-"ui.background" = {}
 "ui.background.separator" = { fg = "fg.subtle" }
 "ui.linenr" = { fg = "fg.subtle" }
 "ui.linenr.selected" = { fg = "fg.default" }
