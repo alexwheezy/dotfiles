@@ -28,7 +28,7 @@ string = "scale.blue.1"
 "constant.numeric" = "scale.blue.2"
 "constant.character.escape" = "scale.blue.2"
 # used for lifetimes
-label = "scale.red.3"
+label = "scale.green.1"
 
 "markup.heading" = "scale.blue.2"
 "markup.bold" = { modifiers = ["bold"] }
@@ -42,7 +42,8 @@ label = "scale.red.3"
 "diff.minus" = "closed.fg"
 "diff.delta" = "attention.fg"
 
-"ui.background" = { bg = "canvas.default" }
+# "ui.background" = { bg = "canvas.default" }
+"ui.background" = {}
 "ui.background.separator" = { fg = "fg.subtle" }
 "ui.linenr" = { fg = "fg.subtle" }
 "ui.linenr.selected" = { fg = "fg.default" }

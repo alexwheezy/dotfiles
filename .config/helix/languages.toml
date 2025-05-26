@@ -14,6 +14,13 @@ name = "cpp"
 auto-format = true
 
 [[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
+# language-server = { command = "ruff" }
+auto-format = true
+formatter = { command = 'black', args = ["--quiet", "-"] }
+
+[[language]]
 name = "markdown"
 soft-wrap.enable = true
 text-width = 120
