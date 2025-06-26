@@ -19,7 +19,7 @@ static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_base,  col_gray2 },
-	[SchemeSel]  = { col_gray4, col_blue,  col_blue  },
+	[SchemeSel]  = { col_gray4, col_base,  col_blue  },
 };
 
 /* tagging */
@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	 */
 	/* class            instance    title       tags mask     isfloating   monitor */
 	{ "qutebrowser",      NULL,       NULL,       1 << 1,          0,        -1 },
-	{ "TelegramDesktop",  NULL,       NULL,       1 << 8,          0,        -1 },
+	{ "Telegram",         NULL,       NULL,       1 << 8,          0,        -1 },
 };
 
 /* layout(s) */
@@ -61,7 +61,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base, "-nf", col_gray3, "-sb", col_base, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *printscrcmd[] = { "flameshot", "gui", NULL };
 
