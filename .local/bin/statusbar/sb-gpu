@@ -1,0 +1,19 @@
+#!/bin/bash
+# Display the GPU load, temperature, power.
+
+case $BLOCK_BUTTON in
+    3) nvidia-settings ;;
+    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+gpu_data=$(nvidia-smi --query-gpu=power.draw,memory.used,temperature.gpu --format=csv,noheader,nounits)
+
+power_draw=$(echo "$gpu_data" | awk -F', ' '{print $1}' | xargs)
+mem_used=$(echo "$gpu_data" | awk -F', ' '{print $2}' | xargs)
+gpu_temp=$(echo "$gpu_data" | awk -F', ' '{print $3}' | xargs)
+
+power_draw=$(awk -v power="$power_draw" 'BEGIN {printf "%d", power}')
+mem_used=$(awk -v mem="$mem_used" 'BEGIN {printf "%.1f", mem / 1024}')
+
+. sb-theme
+display "⚡ ${power_draw}W  ${mem_used}GB  ${gpu_temp}°C"

@@ -1,0 +1,48 @@
+#!/bin/sh
+# Display volume levels with pactl (PulseAudio) with error handling
+
+. sb-theme
+
+if ! pactl info >/dev/null 2>&1; then
+    display " PA" 9  # Show PulseAudio not running
+    exit 0
+fi
+
+sink=$(pactl info | awk -F': ' '/Default Sink/{print $2}')
+if [ -z "$sink" ]; then
+    display " NS" 9  # Show No Sink
+    exit 0
+fi
+
+# Handle mouse events
+case "$BLOCK_BUTTON" in
+    1) setsid --fork terminal -e pulsemixer ;;
+    2) pactl set-sink-mute "$sink" toggle ;;
+    4) pactl set-sink-volume "$sink" +3% ;;
+    5) pactl set-sink-volume "$sink" -3% ;;
+    6) terminal -e "$EDITOR" "$0" ;;
+esac
+
+
+muted=$(pactl get-sink-mute "$sink" 2>/dev/null | awk '{print $2}')
+volume=$(pactl get-sink-volume "$sink" 2>/dev/null | awk '/Volume:/ {print $5}' | tr -d '%')
+
+if [ -z "$volume" ] || [ -z "$muted" ]; then
+    display " ERR" 9
+    exit 0
+fi
+
+if [ "$muted" = "yes" ]; then
+    display " " 9
+    exit 0
+fi
+
+if [ "$volume" -gt 40 ]; then
+    icon=" "
+elif [ "$volume" -gt 15 ]; then
+    icon=" "
+else
+    icon=" "
+fi
+
+display "$icon $volume%"
