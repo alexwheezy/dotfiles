@@ -22,6 +22,22 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_base,  col_blue  },
 };
 
+static const char *const autostart[] = {
+  "xset", "s", "off", NULL,         // Disable screensaver
+  "xset", "-dpms", NULL,            // Disable DPMS (screen shutdown)
+  "xset", "s", "noblank", NULL,     // Disable dimming
+
+  ".fehbg", NULL,
+  "setxkbmap", "us,ru", "-option", "grp:alt_shift_toggle", NULL,
+
+  "picom", "-b", NULL,
+  "qutebrowser", NULL,
+	"Telegram", NULL,
+  "sh", "-c", "dwmblocks 2> /tmp/dwmblocks.log", NULL,
+
+	NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
