@@ -27,9 +27,8 @@ static const char *const autostart[] = {
   "xset", "-dpms", NULL,            // Disable DPMS (screen shutdown)
   "xset", "s", "noblank", NULL,     // Disable dimming
 
-  "feh", "--bg-scale", "/home/alex/.config/dwm/wallpapers/taehoon-kang-12.jpg", NULL,
+  ".fehbg", NULL,
   "setxkbmap", "us,ru", "-option", "grp:alt_shift_toggle", NULL,
-  // "xmodmap", "/home/alex/.Xmodmap", NULL,
 
   "picom", "-b", NULL,
   "qutebrowser", NULL,
@@ -93,7 +92,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_k,      zoom,           {0} },
+	{ MODKEY|ShiftMask,             XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
