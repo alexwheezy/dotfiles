@@ -23,10 +23,7 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-  "xset", "s", "off", NULL,         // Disable screensaver
-  "xset", "-dpms", NULL,            // Disable DPMS (screen shutdown)
-  "xset", "s", "noblank", NULL,     // Disable dimming
-
+	"xset", "s", "off", "-dpms", "s", "noblank", NULL, // Disable screensaver, DPMS (screen shutdown), dimming
   ".fehbg", NULL,
   "setxkbmap", "us,ru", "-option", "grp:alt_shift_toggle", NULL,
 
