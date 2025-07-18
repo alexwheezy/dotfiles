@@ -19,5 +19,5 @@ case $BLOCK_BUTTON in
     6) terminal -e "$EDITOR" "$0" ;;
 esac
 
-. sb-theme
-display "󰥔 $(date '+%b %d (%a) %I:%M %p')"
+. sb-palette
+echo "^d^󰥔 $(date '+%b %d (%a) %I:%M %p')"

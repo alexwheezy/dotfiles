@@ -15,5 +15,5 @@ gpu_temp=$(echo "$gpu_data" | awk -F', ' '{print $3}' | xargs)
 power_draw=$(awk -v power="$power_draw" 'BEGIN {printf "%d", power}')
 mem_used=$(awk -v mem="$mem_used" 'BEGIN {printf "%.1f", mem / 1024}')
 
-. sb-theme
-display "⚡ ${power_draw}W  ${mem_used}GB  ${gpu_temp}°C"
+. sb-palette
+echo "^c${scale_yellow_1}^⚡ ${power_draw}W ^c${base0A}^ ${mem_used}GB ^c${scale_blue_2}^ ${gpu_temp}°C"

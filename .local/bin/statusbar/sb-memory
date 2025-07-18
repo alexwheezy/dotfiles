@@ -8,5 +8,5 @@ esac
 free_mib="$(free --mebi | grep '^Mem:' | tr -s ' ' | cut -d' ' -f3)"
 free_gib=$(awk "BEGIN { printf \"%.2f\", $free_mib / 1024 }")
 
-. sb-theme
-display " $(printf "%.2f" "$free_gib")GB"
+. sb-palette
+echo "^c${base0A}^ $(printf "%.1f" "$free_gib")GB"

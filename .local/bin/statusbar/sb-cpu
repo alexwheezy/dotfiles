@@ -17,5 +17,5 @@ if ! [[ "$cpu_temp" =~ ^-?[0-9]+$ ]]; then
     cpu_temp="N/A"
 fi
 
-. sb-theme
-display " ${usage}  ${cpu_temp}°C" "$color"
+. sb-palette
+echo "^c${scale_purple_2}^ ${usage} ^c${scale_blue_2}^ ${cpu_temp}°C"
