@@ -10,27 +10,29 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "SauceCodeProNerdFont:size=14" };
 static const char dmenufont[]       = { "SauceCodeProNerdFont:size=14" };
 static const char col_base[]        = "#13131e";
-static const char col_blue[]        = "#47698f";
+static const char col_base1[]       = "#5f8787";
+static const char col_blue[]        = "#79c0ff";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
+static const char col_gray5[]       = "#f0f6fc";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_base,  col_gray2 },
-	[SchemeSel]  = { col_gray4, col_base,  col_blue  },
+	[SchemeNorm] = { col_gray5, col_base,  col_gray2 },
+	[SchemeSel]  = { col_base1, col_base,  col_blue  },
 };
 
 static const char *const autostart[] = {
 	"xset", "s", "off", "-dpms", "s", "noblank", NULL, // Disable screensaver, DPMS (screen shutdown), dimming
-  ".fehbg", NULL,
-  "setxkbmap", "us,ru", "-option", "grp:alt_shift_toggle", NULL,
+	".fehbg", NULL,
+	"setxkbmap", "us,ru", "-option", "grp:alt_shift_toggle", NULL,
 
-  "picom", "-b", NULL,
-  "qutebrowser", NULL,
+	"picom", "-b", NULL,
+	"qutebrowser", NULL,
 	"Telegram", NULL,
-  "sh", "-c", "dwmblocks 2> /tmp/dwmblocks.log", NULL,
+	"sh", "-c", "dwmblocks 2> /tmp/dwmblocks.log", NULL,
 
 	NULL /* terminate */
 };
