@@ -11,6 +11,7 @@ static const char *fonts[]          = { "SauceCodeProNerdFont:size=14" };
 static const char dmenufont[]       = { "SauceCodeProNerdFont:size=14" };
 static const char col_base[]        = "#13131e";
 static const char col_base1[]       = "#5f8787";
+static const char col_base2[]       = "#e78a53";
 static const char col_blue[]        = "#79c0ff";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -21,7 +22,7 @@ static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray5, col_base,  col_gray2 },
-	[SchemeSel]  = { col_base1, col_base,  col_blue  },
+	[SchemeSel]  = { col_base2, col_base,  col_blue  },
 };
 
 static const char *const autostart[] = {
@@ -101,7 +102,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Up,     setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_semicolon,  zoom,       {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
+	{ MODKEY|ControlMask,           XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
