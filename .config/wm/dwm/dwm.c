@@ -239,6 +239,7 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void cycleview(const Arg *arg);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
@@ -2778,6 +2779,44 @@ updatewmhints(Client *c)
 			c->neverfocus = 0;
 		XFree(wmh);
 	}
+}
+
+void
+cycleview(const Arg *arg)
+{
+  unsigned int i;
+  unsigned int next_pos;
+  unsigned int occ = 0, curr_pos = 0, curr_tag = 0, total_tags = 0;
+  int visible_tags[LENGTH(tags)];
+
+  Client *c;
+
+  for (c = selmon->clients; c; c = c->next)
+    occ |= c->tags == TAGMASK ? 0 : c->tags;
+  occ |= selmon->tagset[selmon->seltags];
+
+  while (curr_tag < LENGTH(tags) && !(selmon->tagset[selmon->seltags] & (1 << curr_tag)))
+    curr_tag++;
+
+  for (i = 0; i < LENGTH(tags); i++) {
+    if (occ & (1 << i)) {
+      visible_tags[total_tags++] = i;
+    }
+  }
+
+  if (total_tags <= 1)
+    return;
+
+  while (curr_pos < total_tags && visible_tags[curr_pos] != curr_tag)
+    curr_pos++;
+
+  if(arg->i){
+    next_pos = (curr_pos - 1 + total_tags) % total_tags;
+  } else {
+    next_pos = (curr_pos + 1) % total_tags;
+  }
+
+  view(&(Arg){ .ui = 1 << visible_tags[next_pos] });
 }
 
 void
