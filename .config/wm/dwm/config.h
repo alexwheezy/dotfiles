@@ -84,12 +84,15 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base, "-nf", col_gray3, "-sb", col_base, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "alacritty", "--title", scratchpadname, "-o", "window.dimensions.lines=20", "-o", "window.dimensions.columns=80", NULL };
 static const char *printscrcmd[] = { "flameshot", "gui", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Down,   focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
