@@ -217,7 +217,6 @@ static void setcfact(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
-static void shiftviewclients(const Arg *arg);
 static void showhide(Client *c);
 static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
@@ -242,6 +241,7 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void cycleview(const Arg *arg);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
@@ -2367,43 +2367,41 @@ seturgent(Client *c, int urg)
 }
 
 void
-shiftviewclients(const Arg *arg)
+cycleview(const Arg *arg)
 {
-	Arg shifted;
-	Client *c;
-	unsigned int tagmask = 0;
+  unsigned int i;
+  unsigned int next_pos;
+  unsigned int occ = 0, curr_pos = 0, curr_tag = 0, total_tags = 0;
+  int visible_tags[LENGTH(tags)];
 
-	for (c = selmon->clients; c; c = c->next)
-		#if SCRATCHPADS_PATCH
-		if (!(c->tags & SPTAGMASK))
-			tagmask = tagmask | c->tags;
-		#else
-		tagmask = tagmask | c->tags;
-		#endif // SCRATCHPADS_PATCH
+  Client *c;
 
-	#if SCRATCHPADS_PATCH
-	shifted.ui = selmon->tagset[selmon->seltags] & ~SPTAGMASK;
-	#else
-	shifted.ui = selmon->tagset[selmon->seltags];
-	#endif // SCRATCHPADS_PATCH
-	if (arg->i > 0) // left circular shift
-		do {
-			shifted.ui = (shifted.ui << arg->i)
-			   | (shifted.ui >> (LENGTH(tags) - arg->i));
-			#if SCRATCHPADS_PATCH
-			shifted.ui &= ~SPTAGMASK;
-			#endif // SCRATCHPADS_PATCH
-		} while (tagmask && !(shifted.ui & tagmask));
-	else // right circular shift
-		do {
-			shifted.ui = (shifted.ui >> (- arg->i)
-			   | shifted.ui << (LENGTH(tags) + arg->i));
-			#if SCRATCHPADS_PATCH
-			shifted.ui &= ~SPTAGMASK;
-			#endif // SCRATCHPADS_PATCH
-		} while (tagmask && !(shifted.ui & tagmask));
+  for (c = selmon->clients; c; c = c->next)
+    occ |= c->tags == TAGMASK ? 0 : c->tags;
+  occ |= selmon->tagset[selmon->seltags];
 
-	view(&shifted);
+  while (curr_tag < LENGTH(tags) && !(selmon->tagset[selmon->seltags] & (1 << curr_tag)))
+    curr_tag++;
+
+  for (i = 0; i < LENGTH(tags); i++) {
+    if (occ & (1 << i)) {
+      visible_tags[total_tags++] = i;
+    }
+  }
+
+  if (total_tags <= 1)
+    return;
+
+  while (curr_pos < total_tags && visible_tags[curr_pos] != curr_tag)
+    curr_pos++;
+
+  if(arg->i){
+    next_pos = (curr_pos - 1 + total_tags) % total_tags;
+  } else {
+    next_pos = (curr_pos + 1) % total_tags;
+  }
+
+  view(&(Arg){ .ui = 1 << visible_tags[next_pos] });
 }
 
 void
