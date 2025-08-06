@@ -10,20 +10,22 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "SauceCodeProNerdFont:size=14" };
 static const char dmenufont[]       = { "SauceCodeProNerdFont:size=14" };
-static const char col_base[]        = "#13131e";
+static const char col_base[]        = "#0d1117";
 static const char col_base1[]       = "#5f8787";
 static const char col_base2[]       = "#e78a53";
 static const char col_blue[]        = "#79c0ff";
+static const char col_red[]         = "#ff7b72";
+static const char col_gray0[]       = "#f0f6fc";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_gray5[]       = "#f0f6fc";
+static const char col_gray5[]       = "#c9d1d9";
 static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray5, col_base,  col_gray2 },
-	[SchemeSel]  = { col_base1, col_base,  col_blue  },
+	[SchemeNorm] = { col_gray5, col_base, col_gray2 },
+	[SchemeSel]  = { col_gray0, col_base, col_gray2 },
 };
 
 static const char *const autostart[] = {
@@ -83,7 +85,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base, "-nf", col_gray3, "-sb", col_base, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base, "-nf", col_gray5, "-sb", col_base, "-sf", col_gray0, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "alacritty", "--title", scratchpadname, "-o", "window.dimensions.lines=20", "-o", "window.dimensions.columns=80", NULL };
@@ -93,7 +95,7 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_s,      togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ControlMask,           XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
