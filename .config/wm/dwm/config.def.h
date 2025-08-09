@@ -31,7 +31,6 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
 	"xset", "s", "off", "-dpms", "s", "noblank", NULL, // Disable screensaver, DPMS (screen shutdown), dimming
 	".fehbg", NULL,
-	"setxkbmap", "us,ru", "-option", "grp:win_space_toggle", NULL,
 
 	"picom", "-b", NULL,
 	"qutebrowser", NULL,
