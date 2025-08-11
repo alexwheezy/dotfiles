@@ -23,6 +23,7 @@
     X("", "sb-memory", 10, 3) \
     X("", "sb-disk", 1800, 4) \
     X("", "sb-date", 1, 5)    \
-    X("", "sb-volume", 1, 6)
+    X("", "sb-volume", 1, 6)  \
+    X("", "sb-uptime", 1, 7)  \
 
 #endif  // CONFIG_H
