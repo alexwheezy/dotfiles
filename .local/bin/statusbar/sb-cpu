@@ -18,4 +18,4 @@ if ! [[ "$cpu_temp" =~ ^-?[0-9]+$ ]]; then
 fi
 
 . sb-palette
-echo "^c${scale_purple_2}^ ${usage} ^c${scale_blue_2}^ ${cpu_temp}°C"
+echo "^c${scale_red_3}^ ${usage} ^c${scale_blue_2}^ ${cpu_temp}°C"

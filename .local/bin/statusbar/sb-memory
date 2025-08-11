@@ -9,4 +9,4 @@ free_mib="$(free --mebi | grep '^Mem:' | tr -s ' ' | cut -d' ' -f3)"
 free_gib=$(awk "BEGIN { printf \"%.2f\", $free_mib / 1024 }")
 
 . sb-palette
-echo "^c${base0A}^ $(printf "%.1f" "$free_gib")GB"
+echo "^c${fg_default}^ $(printf "%.1f" "$free_gib")GB"

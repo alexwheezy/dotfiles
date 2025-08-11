@@ -1,0 +1,11 @@
+#!/bin/sh
+# Tell how long the system has been running.
+
+case "$BLOCK_BUTTON" in
+    6) terminal -e "$EDITOR" "$0" ;;
+esac
+
+uptime=$(uptime | awk '{ gsub(/,/, "", $3); print "up " $3 }')
+
+. sb-palette
+echo ${uptime}

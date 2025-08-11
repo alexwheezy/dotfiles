@@ -16,4 +16,4 @@ power_draw=$(awk -v power="$power_draw" 'BEGIN {printf "%d", power}')
 mem_used=$(awk -v mem="$mem_used" 'BEGIN {printf "%.1f", mem / 1024}')
 
 . sb-palette
-echo "^c${scale_yellow_1}^⚡ ${power_draw}W ^c${base0A}^ ${mem_used}GB ^c${scale_blue_2}^ ${gpu_temp}°C"
+echo "^c${scale_orange_2}^⚡ ${power_draw}W ^c${fg_default}^ ${mem_used}GB ^c${scale_blue_2}^ ${gpu_temp}°C"

@@ -14,4 +14,4 @@ disk_usage() {
 }
 
 . sb-palette
-echo "^c${base08}^󰋊 $(disk_usage "/")/$(disk_usage "/home")"
+echo "^c${scale_purple_2}^󰋊 $(disk_usage "/")/$(disk_usage "/home")"
