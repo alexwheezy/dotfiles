@@ -38,6 +38,7 @@ static const char *const autostart[] = {
 	".fehbg", NULL,
     "udiskie", "-v", NULL,
 
+    "dunst", NULL,
 	"picom", "-b", NULL,
 	"qutebrowser", NULL,
 	"Telegram", NULL,
