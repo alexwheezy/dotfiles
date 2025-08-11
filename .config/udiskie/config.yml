@@ -1,0 +1,7 @@
+program_options:
+  tray: auto
+  menu: nested
+  automount: true
+  notify: false
+  file_manager: 'alacritty -e yazi'
+  terminal: 'alacritty'

@@ -15,5 +15,27 @@ opacity = 0.95
 [terminal]
 osc52 = "CopyPaste"
 
+[[hints.enabled]]
+command = "xdg-open"
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+post_processing = true
+
+[hints.enabled.binding]
+key = "U"
+mods = "Control|Shift"
+
+[hints.enabled.mouse]
+enabled = true
+mods = "None"
+
+[[hints.enabled]]
+regex = "(\\.|/|~)[^\\s]*"
+post_processing = false
+action = "Copy"
+
+[hints.enabled.binding]
+key = "I"
+mods = "Control|Shift"
+
 [general]
-import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/github-dark.toml"]
